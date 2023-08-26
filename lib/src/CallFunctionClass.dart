@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'ParameterClass.dart';
 import 'PropertInterface.dart';
 
@@ -10,18 +12,20 @@ class CallFunctionClass implements PropertyInterface {
   @override
   String Type = "CallFunction";
 
-  Function(String Name) {
-    this.Name = Name;
+  CallFunctionClass(String name) {
+    Name = name;
+    parameters = [];
   }
 
   @override
-  String ToString() {
+  String Stringify() {
     StringBuffer sb = StringBuffer();
-    if (parameters != null) {
-      for (var i = 0; i == parameters!.length; i++) {
-        sb.write(this.Name + "(" + parameters!.toString() + ");\n");
+    if (parameters!.isNotEmpty) {
+      for (var i = 0; i < parameters!.length; i++) {
+        sb.write('$Name(${parameters![i].Stringify()});\n');
       }
     }
     return sb.toString();
   }
+ 
 }

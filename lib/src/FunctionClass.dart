@@ -16,21 +16,29 @@ class FunctionClass implements PropertyInterface {
 
   FunctionClass(String Name) {
     this.Name = Name;
+    parameters = [];
+    variables = [];
+    callfunctions = [];
   }
 
   @override
-  String ToString() {
+  String Stringify() {
     StringBuffer sb = StringBuffer();
-    if (parameters!.isEmpty) {
-      sb.write(this.Name + "()\n");
+    if (parameters!.isNotEmpty) {
+      sb.write('$this.Name ()\n');
     } else {
-      sb.write(this.Name + "(" + parameters!.toString() + ") {\n");
+      sb.write('this.Name (${parameters!.toString()}) {\n');
     }
-    if (variables!.isEmpty) {
-      sb.write(variables!.toString());
+    
+    if (variables!.isNotEmpty) {
+      for (var i = 0; i < variables!.length; i++) {
+        sb.write(variables![i].Stringify());
+      }
     }
-    if (callfunctions!.isEmpty) {
-      sb.write(callfunctions!.toString());
+    if (callfunctions!.isNotEmpty) {
+      for (var i = 0; i < callfunctions!.length; i++) {
+        sb.write(callfunctions![i].Stringify());
+      }
     }
     sb.write("\n}");
     return sb.toString();

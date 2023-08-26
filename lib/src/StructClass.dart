@@ -12,13 +12,18 @@ class StructClass implements PropertyInterface {
 
   StructClass() {
     this.Name = Name;
+    variables = [];
   }
 
   @override
-  String ToString() {
+  String Stringify() {
     StringBuffer sb = StringBuffer();
-    sb.write("struct " + this.Name + " {\n");
-    sb.write(variables.toString());
+    sb.write('struct $this.Name {\n');
+    if (variables!.isNotEmpty) {
+      for(var i = 0; i < variables!.length; i++) {
+        variables![i].Stringify();
+      }
+    } 
     sb.write("\n}");
     return "";
   }
